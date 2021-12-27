@@ -1,0 +1,179 @@
+﻿<UserControl x:Class="MainMaterialApp.Purchase.PurchaseView.PurchaseView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MainMaterialApp.Purchase.PurchaseView"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+
+        <Style TargetType="TextBlock" x:Key="Cnt" >
+            <Setter Property="Margin" Value="0"></Setter>
+        </Style>
+
+        <Style TargetType="DataGridColumnHeader" x:Key="Hdr" >
+
+            <Setter Property="Padding" Value="15 0 "></Setter>
+            <Setter Property="Background" Value="LightGray"></Setter>
+
+        </Style>
+
+    </UserControl.Resources>
+    <materialDesign:Card Background="White">
+        <Grid Margin="20" >
+            <Grid.RowDefinitions>
+                <RowDefinition MaxHeight="120"></RowDefinition>
+                <RowDefinition ></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" >
+                <Grid.RowDefinitions>
+                    <RowDefinition ></RowDefinition>
+                    <RowDefinition ></RowDefinition>
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition ></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0" Grid.Column="0" Margin="0 2 5 0" VerticalAlignment="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.8*"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Ref No :-" VerticalAlignment="Center" Grid.Column="0" >
+                    </TextBlock>
+                    <syncfusion:UpDown  
+                    BorderBrush="Black"
+                    BorderThickness="1"
+                    FocusedBorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                    Grid.Column="1"
+                    Height="24"
+                    TextAlignment="Center"
+                    Value="1234567" />
+                </Grid>
+                <DatePicker Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" Margin="0 3 5 0"  Padding="3" Style="{StaticResource MaterialDesignOutlinedDatePicker}"></DatePicker>
+
+
+                <Button Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Right"  materialDesign:ButtonAssist.CornerRadius="15"  Width="100" Style="{StaticResource MaterialDesignOutlinedDarkButton}" Foreground="{DynamicResource PrimaryHueMidBrush}" >
+                    <Button.Content >
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <materialDesign:PackIcon Kind="Printer" Margin="0 3 5 0" />
+                            <TextBlock Text=" PRINT" Margin="0 0 1 0"></TextBlock>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+
+                <TextBox x:Name="InvoiceNoTextBox"  Margin="0 0 5 0" VerticalAlignment="Top" Padding="10 7" Height="35" Grid.Row="1" Grid.Column="0"  Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:HintAssist.Hint="Invoice No" ></TextBox>
+                <DatePicker Name="InvoiceDatePicker"  Margin="0 0 5 0" VerticalAlignment="Top" Padding="10 7"  Height="35" Grid.Row="1" Grid.Column="1"  materialDesign:HintAssist.Hint="Invoice Date" Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+              
+
+
+
+
+            </Grid>
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" CanContentScroll="True">
+                <Grid Grid.Row="1" HorizontalAlignment="Center" Width="1500"  >
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="25"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <DataGrid x:Name="InsideDatagrid" AutoGenerateColumns="False" Grid.Row="0" RowDetailsVisibilityMode="Visible" CanUserAddRows="False" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" >
+
+                        <DataGrid.Columns >
+
+                            <materialDesign:DataGridTextColumn ElementStyle="{StaticResource Cnt}" HeaderStyle="{StaticResource Hdr}"  Header="No" Width="50" Binding= "{Binding Path=Id, Mode=TwoWay}" IsReadOnly="True" />
+                            <materialDesign:DataGridTextColumn ElementStyle="{StaticResource Cnt}" HeaderStyle="{StaticResource Hdr}"  Width="*" Header="Barcode" Binding= "{Binding Path=Barcode, Mode=TwoWay}"  />
+                            <materialDesign:DataGridTextColumn ElementStyle="{StaticResource Cnt}" HeaderStyle="{StaticResource Hdr}"  Width="*" Header="HSN" Binding= "{Binding Path=Qty, Mode=TwoWay}" IsReadOnly="True"/>
+                            <materialDesign:DataGridTextColumn ElementStyle="{StaticResource Cnt}" HeaderStyle="{StaticResource Hdr}"  Width="*" Header="Item" Binding= "{Binding Path=Item, Mode=TwoWay}" IsReadOnly="True"/>
+                            <materialDesign:DataGridTextColumn ElementStyle="{StaticResource Cnt}" HeaderStyle="{StaticResource Hdr}"  Width="*" Header="Size" Binding= "{Binding Path=Qty, Mode=TwoWay}" IsReadOnly="True"/>
+                            <materialDesign:DataGridTextColumn ElementStyle="{StaticResource Cnt}" HeaderStyle="{StaticResource Hdr}"  Width="*" Header="Article No" Binding= "{Binding Path=Barcode, Mode=TwoWay}" IsReadOnly="True"/>
+                            <materialDesign:DataGridTextColumn ElementStyle="{StaticResource Cnt}" HeaderStyle="{StaticResource Hdr}"  Width="*" Header="Brand" Binding= "{Binding Path=Item, Mode=TwoWay}" IsReadOnly="True"/>
+                            <materialDesign:DataGridTextColumn ElementStyle="{StaticResource Cnt}" HeaderStyle="{StaticResource Hdr}"  Width="*" Header="Qty" Binding= "{Binding Path=Qty, Mode=TwoWay}" IsReadOnly="False"/>
+                            <materialDesign:DataGridTextColumn ElementStyle="{StaticResource Cnt}" HeaderStyle="{StaticResource Hdr}"  Width="*" Header="Price" Binding= "{Binding Path=Discount, Mode=TwoWay}" IsReadOnly="True"/>
+                            <materialDesign:DataGridTextColumn ElementStyle="{StaticResource Cnt}" HeaderStyle="{StaticResource Hdr}"  Width="*" Header="Cgst" Binding= "{Binding Path=Cgst, Mode=TwoWay}" IsReadOnly="True"/>
+                            <materialDesign:DataGridTextColumn ElementStyle="{StaticResource Cnt}" HeaderStyle="{StaticResource Hdr}"  Width="*" Header="Sgst" Binding= "{Binding Path=Sgst, Mode=TwoWay}" IsReadOnly="True"/>
+                            <materialDesign:DataGridTextColumn ElementStyle="{StaticResource Cnt}" HeaderStyle="{StaticResource Hdr}"  Width="*" Header="Amount" Binding= "{Binding Path=Amount, Mode=OneWay}" IsReadOnly="True"/>
+                            <materialDesign:DataGridTextColumn ElementStyle="{StaticResource Cnt}" HeaderStyle="{StaticResource Hdr}"  Width="*" Header="Mrp" Binding= "{Binding Path=Salesman, Mode=TwoWay}" IsReadOnly="True"/>
+                            <materialDesign:DataGridTextColumn ElementStyle="{StaticResource Cnt}" HeaderStyle="{StaticResource Hdr}"  Width="*" Header="Retail" Binding= "{Binding Path=Salesman, Mode=TwoWay}" IsReadOnly="True"/>
+                            <materialDesign:DataGridTextColumn ElementStyle="{StaticResource Cnt}" HeaderStyle="{StaticResource Hdr}"  Width="*" Header="Profit" Binding= "{Binding Path=Amount, Mode=TwoWay}" IsReadOnly="True"/>
+
+                        </DataGrid.Columns>
+                        <DataGrid.RowDetailsTemplate  >
+                            <DataTemplate>
+                                <Grid Background="BlanchedAlmond">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50" ></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                </Grid>
+                            </DataTemplate>
+                        </DataGrid.RowDetailsTemplate>
+                    </DataGrid>
+                    <Grid Grid.Row="2" Height="25"  Background="LightGray"  VerticalAlignment="Top" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition  ></RowDefinition>
+
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+
+                        <TextBlock FontWeight="Bold" x:Name="TotalLabel" Text="Total" Grid.Row="0" Grid.Column="6" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="lightgray" />
+
+                        <TextBlock FontWeight="Bold" Grid.Row="0" Grid.Column="7" Text="234"  HorizontalAlignment="Stretch"   TextWrapping="Wrap" VerticalAlignment="Center" Background="lightgray"/>
+                        <TextBlock FontWeight="Bold" Grid.Row="0" Grid.Column="8" Text="234"  HorizontalAlignment="Stretch"   TextWrapping="Wrap" VerticalAlignment="Center" Background="lightgray"/>
+
+                        <TextBlock FontWeight="Bold" x:Name="TotalQuantityTextBox" Grid.Row="0" Grid.Column="9" Text="332.33"  HorizontalAlignment="Stretch"   TextWrapping="Wrap" VerticalAlignment="Center" Background="lightgray"/>
+                        <TextBlock FontWeight="Bold" x:Name="TotalMrpTextBox" Grid.Row="0" Grid.Column="10" Text="233.33"  HorizontalAlignment="Stretch"   TextWrapping="Wrap" VerticalAlignment="Center"  Background="lightgray"/>
+                        <TextBlock FontWeight="Bold" x:Name="TotalDiscountTextBox" Grid.Row="0" Grid.Column="11" Text="23,22"  HorizontalAlignment="Stretch"  TextWrapping="Wrap" VerticalAlignment="Center"  Background="lightgray"/>
+                        <TextBlock FontWeight="Bold" x:Name="TotalCgstTextBox" Grid.Row="0" Grid.Column="12" Text="232.23"  HorizontalAlignment="Stretch"   TextWrapping="Wrap" VerticalAlignment="Center"  Background="lightgray"/>
+                        <TextBlock FontWeight="Bold" x:Name="TotalSgstTextBox" Grid.Row="0" Grid.Column="13" Text="23.23"  HorizontalAlignment="Stretch"   TextWrapping="Wrap" VerticalAlignment="Center"  Background="lightgray"/>
+                        <TextBlock FontWeight="Bold" x:Name="TotalAmountTextBox" Grid.Row="0" Grid.Column="14" Text="32.23" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Center"  Background="lightgray"/>
+
+
+                    </Grid>
+                </Grid>
+            </ScrollViewer>
+            
+            
+        </Grid>
+
+    </materialDesign:Card>
+</UserControl>

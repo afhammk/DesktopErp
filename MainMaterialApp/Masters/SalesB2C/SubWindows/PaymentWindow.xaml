@@ -1,0 +1,159 @@
+﻿<Window x:Class="MainMaterialApp.Masters.SalesB2C.SubWindows.PaymentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        
+        xmlns:local="clr-namespace:MainMaterialApp.Masters.SalesB2C.SubWindows"
+        mc:Ignorable="d"
+        Title="PaymentWindow" Closed="Window_Closed"  WindowStartupLocation="CenterScreen" MinHeight="700" MinWidth="600" MaxHeight="700" MaxWidth="600"
+        ResizeMode="NoResize"
+        >
+    <Window.Resources>
+
+        <Style TargetType="TextBlock" x:Key="Cnt" >
+            <Setter Property="Margin" Value="0"></Setter>
+        </Style>
+
+        <Style TargetType="DataGridColumnHeader" x:Key="Hdr" >
+
+            <Setter Property="Padding" Value="15 0 "></Setter>
+            <Setter Property="Background" Value="LightGray"></Setter>
+
+
+        </Style>
+
+    </Window.Resources>
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height=".15*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.6*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0 0 0 7" Padding="10 5" Grid.Row="0"  Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:HintAssist.Hint="Total Amount" ></TextBox>
+                <TextBox HorizontalAlignment="Stretch" Padding="10 5"  VerticalAlignment="Stretch"  Margin="0 0 0 7"  Grid.Row="1"  Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:HintAssist.Hint="Sales Return" ></TextBox>
+                <TextBox HorizontalAlignment="Stretch" Padding="10 5"  VerticalAlignment="Stretch"  Margin="0 0 0 7" Grid.Row="2"  Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:HintAssist.Hint="Special Offer" ></TextBox>
+                <TextBox HorizontalAlignment="Stretch" Padding="10 5"  VerticalAlignment="Stretch"  Margin="0 0 0 7" Grid.Row="3"  Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:HintAssist.Hint="Special Discount" ></TextBox>
+                <TextBox HorizontalAlignment="Stretch" Padding="10 5"  VerticalAlignment="Stretch"  Margin="0 0 0 7" Grid.Row="4"  Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:HintAssist.Hint="Net Amount" ></TextBox>
+                <TextBox HorizontalAlignment="Stretch" Padding="10 5"  VerticalAlignment="Stretch"  Margin="0 0 0 7" Grid.Row="5"  Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:HintAssist.Hint="Discount Coupons" ></TextBox>
+                <TextBox HorizontalAlignment="Stretch" Padding="10 5"  VerticalAlignment="Stretch"  Margin="0 0 0 7" Grid.Row="6"  Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:HintAssist.Hint="Gift Voucher" ></TextBox>
+                <StackPanel Orientation="Horizontal" Grid.Row="7" HorizontalAlignment="Center">
+                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center"  Text="Grand Total :-  "></TextBlock>
+                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center"  Text="123545.45 "></TextBlock>
+                </StackPanel>
+                <TextBox HorizontalAlignment="Stretch" Padding="10 5"  VerticalAlignment="Stretch"  Margin="0 0 0 7" Grid.Row="8"  Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:HintAssist.Hint="Credit Balance" ></TextBox>
+                <TextBox HorizontalAlignment="Stretch" Padding="10 5"  VerticalAlignment="Stretch"  Margin="0 0 0 7" Grid.Row="9"  Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:HintAssist.Hint="Credit Adjustment" ></TextBox>
+                <TextBox HorizontalAlignment="Stretch" Padding="10 5"  VerticalAlignment="Stretch"  Margin="0 0 0 7" Grid.Row="10"  Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:HintAssist.Hint="Loyality Value" ></TextBox>
+                <TextBox HorizontalAlignment="Stretch" Padding="10 5"  VerticalAlignment="Stretch"  Margin="0 0 0 7" Grid.Row="11"  Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:HintAssist.Hint="Round Off" ></TextBox>
+                <StackPanel Orientation="Horizontal" Grid.Row="14" HorizontalAlignment="Center">
+                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center"  Text="Balance To Pay :-  "></TextBlock>
+                    <TextBlock VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center"  Text="123545.45 "></TextBlock>
+                </StackPanel>
+                <TextBox HorizontalAlignment="Stretch" Padding="10 5"  VerticalAlignment="Stretch"  Margin="0 0 0 7" Grid.Row="12"  Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:HintAssist.Hint="Extra field 1" ></TextBox>
+                <TextBox HorizontalAlignment="Stretch" Padding="10 5"  VerticalAlignment="Stretch"   Grid.Row="13"  Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:HintAssist.Hint="Extra field 2" ></TextBox>
+
+            </Grid>
+            <Grid Grid.Column="1" Margin="10 0 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <GroupBox Header="Loyality Card" Grid.Row="0" Margin="0 0 0 10"  >
+                    <GroupBox.Content>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+                            <TextBlock VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center"  Text="Points Value :-  "></TextBlock>
+                            <TextBlock VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center"  Text="1235 "></TextBlock>
+                        </StackPanel>
+                    </GroupBox.Content>
+                </GroupBox>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition ></RowDefinition>
+                        <RowDefinition Height="25"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <DataGrid Grid.Row="0" AutoGenerateColumns="False" x:Name="PmntDataGrid" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn  ElementStyle="{StaticResource Cnt}" HeaderStyle="{StaticResource Hdr}" Header="PaymentName" Binding="{Binding Path=PaymentName , Mode=TwoWay}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn  ElementStyle="{StaticResource Cnt}" HeaderStyle="{StaticResource Hdr}" Header="Amount" Binding="{Binding Path=Amount , Mode=TwoWay}" Width="*"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Grid Grid.Row="1" Height="25"  Background="LightGray"  VerticalAlignment="Top" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition  ></RowDefinition>
+
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+
+                        </Grid.ColumnDefinitions>
+
+
+                        <TextBlock Margin="20 0" FontWeight="Bold" x:Name="TotalLabel" Text="Total" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="lightgray" />
+
+                        <TextBlock Margin="10 0" FontWeight="Bold" Grid.Row="0" Grid.Column="1" Text="2323.32" HorizontalAlignment="Stretch"   TextWrapping="Wrap" VerticalAlignment="Center" Background="lightgray"/>
+                      
+
+                    </Grid>
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right">
+                        <TextBlock VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center"  Text="Balance :-  "></TextBlock>
+                        <TextBlock VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center"  Text="123545.45 "></TextBlock>
+                    </StackPanel>
+                </Grid>
+                
+                
+                
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1" Margin="0 10 0 0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="Save And Print" Height="60"  Margin="0 0 5 0" materialDesign:ShadowAssist.ShadowDepth="Depth3"  materialDesign:ButtonAssist.CornerRadius="5"  ></Button>
+            <Button x:Name="CreditAdjustment" Grid.Column="1" Height="60" Style="{StaticResource MaterialDesignOutlinedDarkButton}" Margin="0 0 5 0" materialDesign:ShadowAssist.ShadowDepth="Depth3"  materialDesign:ButtonAssist.CornerRadius="5"   Click="CreditAdjustment_Click"  >
+                <Button.Content>
+                    <StackPanel Orientation="Vertical" Grid.Row="1" HorizontalAlignment="Right">
+                        <TextBlock VerticalAlignment="Center"  HorizontalAlignment="Center"  Text="Credit"></TextBlock>
+                        <TextBlock VerticalAlignment="Center"  HorizontalAlignment="Center"  Text="Adjustments"></TextBlock>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button x:Name="PointsRedeem" Grid.Column="2" Height="60" Style="{StaticResource MaterialDesignOutlinedDarkButton}"  Content="Points Redeem"  Margin="0 0 5 0" materialDesign:ShadowAssist.ShadowDepth="Depth3"  materialDesign:ButtonAssist.CornerRadius="5"  Click="PointsRedeem_Click"></Button>
+            <Button Grid.Column="3"  Height="60"  Style="{StaticResource MaterialDesignOutlinedDarkButton}"  x:Name="DiscountCoupon" Click="DiscountCoupon_Click"  materialDesign:ShadowAssist.ShadowDepth="Depth3"  materialDesign:ButtonAssist.CornerRadius="5"   >
+                <Button.Content>
+                    <StackPanel Orientation="Vertical" Grid.Row="1" HorizontalAlignment="Right">
+                        <TextBlock VerticalAlignment="Center"  HorizontalAlignment="Center"  Text="Discount"></TextBlock>
+                        <TextBlock VerticalAlignment="Center"  HorizontalAlignment="Center"  Text="Coupon"></TextBlock>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+        </Grid>
+    </Grid>
+</Window>

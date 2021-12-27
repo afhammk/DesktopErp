@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+	<LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="PagesForCustomer\CustomerScreen\Images\demo.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
+    <PackageReference Include="IPrint" Version="1.0.1" />
+    <PackageReference Include="MaterialDesignColors" Version="2.0.3" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.2.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Npgsql" Version="5.0.10" />
+    <PackageReference Include="Syncfusion.Licensing" Version="19.4.0.38" />
+    <PackageReference Include="Syncfusion.SfSkinManager.WPF" Version="19.3.0.57" />
+    <PackageReference Include="Syncfusion.Tools.WPF" Version="19.4.0.38" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="PagesForCustomer\CustomerScreen\Images\demo.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Masters\SalesB2C\SubWindows\CreditAdjustments.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Masters\SalesB2C\SubWindows\CreditAdjustments.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Masters\DamageStockEntry\Models\" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,203 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        xmlns:syncfusionskin ="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
+        xmlns:local="clr-namespace:MainMaterialApp.MainWindow"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="MainMaterialApp.MainWindow.MainWindow"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"    
+        
+        mc:Ignorable="d"
+        Title="MainWindow" Height="700" Width="1250">
+    <Window.Resources>
+         
+        <Style x:Key="TreeStyle" TargetType="TreeViewItem" BasedOn="{StaticResource MaterialDesignTreeViewItem}">
+            <Style.Triggers>
+                <Trigger  Property="IsMouseOver" Value="True">
+                    <!--<Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}"></Setter>-->
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+    </Window.Resources>
+    
+    
+    <Grid >
+        <materialDesign:DrawerHost
+          x:Name="DrawerHost"
+          
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch"
+          BorderThickness="2"
+          BorderBrush="{DynamicResource MaterialDesignDivider}"
+          OpenMode="Modal"
+          BottomDrawerBackground="{DynamicResource SecondaryHueLightBrush}">
+
+            <materialDesign:DrawerHost.Style>
+                <Style
+              TargetType="{x:Type materialDesign:DrawerHost}"
+              BasedOn="{StaticResource {x:Type materialDesign:DrawerHost}}">
+                    <Style.Triggers>
+                        <DataTrigger
+                  Binding="{Binding IsChecked, ElementName=BackgroundToggle}"
+                  Value="True">
+                            <Setter
+                    Property="OverlayBackground"
+                    Value="{DynamicResource PrimaryHueMidBrush}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </materialDesign:DrawerHost.Style>
+            <materialDesign:DrawerHost.LeftDrawerContent >
+                <Grid>
+                    <TreeView Width="200" VerticalAlignment="Top" >
+                        <TreeViewItem Header="Masters" x:Name="MastersTree" Expanded="Masters_Expanded" Selected="MastersTree_Selected" Style="{StaticResource TreeStyle}"  >
+
+                            <TreeViewItem  x:Name="SalesB2C"  Header="SalesB2C" Selected="SalesB2C_Selected"   >
+                            </TreeViewItem>
+                            <TreeViewItem x:Name="SalesReturn"  Header="SalesReturn" Selected="SalesReturn_Selected"  >
+                            </TreeViewItem>
+                            <TreeViewItem x:Name="SalesB2B"  Header="SalesB2B" Selected="SalesB2B_Selected"  >
+                            </TreeViewItem>
+                            <TreeViewItem x:Name="Loading"  Header="Neumorphism" Selected="Loading_Selected"  >
+                            </TreeViewItem>
+                            <TreeViewItem x:Name="SalesReturnOtherStore"  Header="SalesReturnOtherStores" Selected="SalesReturnOtherStore_Selected" >
+                            </TreeViewItem>
+                            <TreeViewItem x:Name="DamageStockEntry"  Header="DamageStockEntry" Selected="DamageStockEntry_Selected">
+                            </TreeViewItem>
+                        </TreeViewItem>
+                        <TreeViewItem Header="Purchase" x:Name="PurchaseTree" Expanded="Purchase_Expanded"  Style="{StaticResource TreeStyle}" >
+                            <TreeViewItem x:Name="PurchaseReturn"  Header="Purchase Return" Selected="PurchaseReturn_Selected"  />
+                            <TreeViewItem x:Name="PurchaseView"  Header="Purchase View" Selected="PurchaseView_Selected" />
+                            <TreeViewItem x:Name="PurchaseRecieveForm"  Header="Purchase Recieve Form" Selected="PurchaseRecieveForm_Selected" />
+                        </TreeViewItem>
+                        <TreeViewItem Header="Billing" x:Name="BillingTree" Expanded="Billing_Expanded"  Style="{StaticResource TreeStyle}">
+                            <TreeViewItem x:Name="BillingPaymentWindow"  Header="Payment Window" Selected="BillingPaymentWindow_Selected"  >
+                            </TreeViewItem>
+                            <TreeViewItem x:Name="BillingReceiptWindow"  Header="Receipt Window" Selected="BillingReceiptWindow_Selected" >
+                            </TreeViewItem>
+                            <TreeViewItem x:Name="ChangePaymentMode"  Header="Change Payment Mode" Selected="ChangePaymentMode_Selected" >
+                            </TreeViewItem>
+                            <TreeViewItem x:Name="RefundVoucher"  Header="Refund Voucher" Selected="RefundVoucher_Selected" >
+                            </TreeViewItem>
+                            <TreeViewItem x:Name="DayClosing"  Header="Day Closing" Selected="DayClosing_Selected" >
+                            </TreeViewItem>
+                            <TreeViewItem x:Name="GiftIssue"  Header="Gift Issue" Selected="GiftIssue_Selected" >
+                            </TreeViewItem>
+                            <TreeViewItem x:Name="CustomerSales"  Header="Customer Sales" Selected="CustomerSales_Selected">
+                            </TreeViewItem>
+                        </TreeViewItem>
+                        <TreeViewItem Header="Tailoring" x:Name="TailoringTree" Expanded="Tailoring_Expanded"  Style="{StaticResource TreeStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="MessageSecure"/>
+                                <TextBlock Text="Tailoring" VerticalAlignment="Center" Margin="10 0"/>
+
+                            </StackPanel>
+                        </TreeViewItem>
+                        <TreeViewItem Header="Reports" x:Name="ReportsTree" Expanded="Reports_Expanded"  Style="{StaticResource TreeStyle}" >
+                            <TreeViewItem x:Name="SectionWiseReport"  Header="Section Wise Report" Selected="SectionWiseReport_Selected">
+                            </TreeViewItem>
+                            <TreeViewItem x:Name="SearchBarcode"  Header="Search Barcode" Selected="SearchBarcode_Selected">
+                            </TreeViewItem>
+                            <TreeViewItem x:Name="SalesReport"  Header="Sales Report" Selected="SalesReport_Selected">
+                            </TreeViewItem>
+                            <TreeViewItem x:Name="SalesmanReport"  Header="Salesman Report" Selected="SalesmanReport_Selected">
+                            </TreeViewItem>
+                        </TreeViewItem>
+                        <TreeViewItem Header="Settings" x:Name="SettingsTree" Expanded="Settings_Expanded"  Style="{StaticResource TreeStyle}">
+                            <TreeViewItem x:Name="CustomerScreen"  Header="Customer Screen" Selected="CustomerScreen_Selected">
+                            </TreeViewItem>
+                            <TreeViewItem x:Name="CustomerRating"  Header="Customer Rating" Selected="CustomerRating_Selected">
+                            </TreeViewItem>
+                        </TreeViewItem>
+                    </TreeView>
+
+
+                    <ListBox VerticalAlignment="Bottom" Margin="0 0 0 10">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center"  >
+                            <materialDesign:PackIcon Kind="Settings" VerticalAlignment="Center"/>
+                            <TextBlock Text="Settings" Margin="17 0 0 0"></TextBlock>
+                        </StackPanel>
+                    </ListBox>
+                  
+                </Grid>
+                
+               
+            </materialDesign:DrawerHost.LeftDrawerContent>
+            <Grid  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35" />
+                    <RowDefinition/>
+                    <RowDefinition Height="15" />
+                </Grid.RowDefinitions>
+                <materialDesign:Card Grid.Row="0"  VerticalAlignment="Top" Background="{StaticResource PrimaryHueMidBrush}"  materialDesign:ShadowAssist.ShadowDepth="Depth2"  materialDesign:ButtonAssist.CornerRadius="5">
+                    <Grid  >
+                        <!--<materialDesign:PopupBox  x:Name="Popup" IsEnabled="True"  HorizontalAlignment="Right" >
+                            <materialDesign:PopupBox.ToggleContent>
+                                <materialDesign:PackIcon Kind="Person" Width="30" Foreground="White" >
+
+                                </materialDesign:PackIcon>
+                            </materialDesign:PopupBox.ToggleContent>
+                            <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Margin="20" Grid.Row="0" FontWeight="Bold" Text="Mohammed Anas" />
+                                <Button  Grid.Row="1" Content="Log Out" HorizontalContentAlignment="Right"></Button>
+                            </Grid>
+                        </materialDesign:PopupBox>-->
+
+                        <Button
+                        Content="{materialDesign:PackIcon Kind=HamburgerMenu}"
+                        Background="{StaticResource PrimaryHueMidBrush}"
+                        Foreground="White"
+                        HorizontalAlignment="Left"
+                        x:Name="MenuBtn"
+                        Click="MenuBtn_Click"
+                        Height="30"
+                        Style="{StaticResource MaterialDesignFlatLightButton}"
+                        >
+                   
+                        </Button>
+                    </Grid>
+                </materialDesign:Card>
+
+
+                <Grid Grid.Row="1" Background="LightGray" >
+                    <!--<ContentControl x:Name="ContentArea" Content="{Binding}"></ContentControl> -->
+
+                    <syncfusion:DocumentContainer  Mode="TDI" x:Name="DocCont"  TDICloseButtonType="Individual" >
+                        <syncfusion:DocumentContainer.DocumentTabItemStyle>
+                            <Style TargetType="syncfusion:TabItemExt" >
+                                <Setter Property="Background" Value="WhiteSmoke"></Setter>
+                                <Setter Property="Foreground" Value="Black"></Setter>
+                                <Setter Property="UseCustomEditableTemplate" Value="True"></Setter>
+                            </Style>
+                        </syncfusion:DocumentContainer.DocumentTabItemStyle>
+                        <syncfusion:DocumentContainer.DocumentTabControlStyle >
+                            <Style TargetType="syncfusion:DocumentTabControl" >
+                                <Setter Property="TabItemSelectedBackground" Value="{DynamicResource PrimaryHueMidBrush}"></Setter>
+                                <Setter Property="TabItemSelectedForeground" Value="White"></Setter>
+                                <Setter Property="TabItemHoverBackground" Value="LightGray"></Setter>
+                               
+                            </Style>
+                        </syncfusion:DocumentContainer.DocumentTabControlStyle>
+                    </syncfusion:DocumentContainer>
+
+                </Grid>
+                <Grid Grid.Row="3" HorizontalAlignment="Stretch" Background="LightGray">
+                    <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center" >
+                        <TextBlock  Margin="20 0" Text="©2021 Montzo Life Pvt. Ltd "></TextBlock>
+
+                        <TextBlock x:Name="Timer" Margin="20 0" Text="{Binding Source={x:Static sys:DateTime.Now}}"></TextBlock>
+                    </StackPanel>
+                </Grid>
+                
+            </Grid>
+
+        </materialDesign:DrawerHost>
+    </Grid>
+</Window>

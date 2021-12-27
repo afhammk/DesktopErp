@@ -1,0 +1,84 @@
+﻿<Window x:Class="MainMaterialApp.Masters.SalesB2C.SubWindows.DiscountsRedeemWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        
+        xmlns:local="clr-namespace:MainMaterialApp.Masters.SalesB2C.SubWindows"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Title="DiscountsRedeemWindow" Height="450" Width="400">
+    <Window.Resources>
+
+        <Style TargetType="TextBlock" x:Key="Cnt" >
+            <Setter Property="Margin" Value="0"></Setter>
+        </Style>
+
+        <Style TargetType="DataGridColumnHeader" x:Key="Hdr" >
+
+            <Setter Property="Padding" Value="15 0 "></Setter>
+            <Setter Property="Background" Value="LightGray"></Setter>
+
+
+        </Style>
+
+    </Window.Resources>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.3*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Row="0" Header="Discount Coupons" Style="{x:Null}">
+            <GroupBox.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBox  Margin="5 0" Padding="15 10" MaxWidth="205" Height="40" Grid.Column="0"  Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:HintAssist.Hint="No" ></TextBox>
+                    <TextBox  Margin="5 0" Padding="15 10" MaxWidth="205" Height="40" Grid.Column="1"  Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:HintAssist.Hint="Amount" ></TextBox>
+
+                </Grid>
+            </GroupBox.Content>
+        </GroupBox>
+        <GroupBox Grid.Row="1" Header="Gift Voucher" Style="{x:Null}">
+            <GroupBox.Content>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="25"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <DataGrid Grid.Row="0" AutoGenerateColumns="False" x:Name="PmntDataGrid" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn  ElementStyle="{StaticResource Cnt}" HeaderStyle="{StaticResource Hdr}" Header="Sl.No" Binding="{Binding Path=PaymentName , Mode=TwoWay}" Width=".3*"></DataGridTextColumn>
+
+                            <DataGridTextColumn  ElementStyle="{StaticResource Cnt}" HeaderStyle="{StaticResource Hdr}" Header="PaymentName" Binding="{Binding Path=PaymentName , Mode=TwoWay}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn  ElementStyle="{StaticResource Cnt}" HeaderStyle="{StaticResource Hdr}" Header="Amount" Binding="{Binding Path=Amount , Mode=TwoWay}" Width="*"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Grid Grid.Row="1" Height="25"  Background="LightGray"  VerticalAlignment="Top" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition  ></RowDefinition>
+
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+
+                        </Grid.ColumnDefinitions>
+
+
+                        <TextBlock Margin="20 0" FontWeight="Bold" x:Name="TotalLabel" Text="Total" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="lightgray" />
+
+                        <TextBlock  FontWeight="Bold" Grid.Row="0" Grid.Column="2" Text="2323.32" HorizontalAlignment="Stretch"   TextWrapping="Wrap" VerticalAlignment="Center" Background="lightgray"/>
+
+
+                    </Grid>
+                </Grid>
+            </GroupBox.Content>
+        </GroupBox>
+    </Grid>
+</Window>

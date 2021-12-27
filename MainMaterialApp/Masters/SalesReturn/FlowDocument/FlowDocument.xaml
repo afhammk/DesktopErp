@@ -1,0 +1,119 @@
+﻿<Window x:Class="MainMaterialApp.Masters.SalesReturn.FlowDocument.FlowDocument"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MainMaterialApp.Masters.SalesReturn.FlowDocument"
+        
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterOwner"
+        Title="FlowDocument" Height="650" Width="600">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <Button Content="Print" Width="100" Click="Button_Click"></Button>
+            <FlowDocumentPageViewer>
+                <FlowDocument Background="AliceBlue" x:Name="FlowDoc">
+                    <Section >
+                        <Paragraph x:Name="Name">Name :-
+                            <Run Text="Afham m.k"></Run>
+                        </Paragraph>
+                        <Paragraph x:Name="Mobile">Mobile :-
+                            <Run Text="83282898983"></Run>
+                        </Paragraph>
+                        <Paragraph x:Name="Place">Place :-
+                            <Run Text="Melattur"></Run>
+                        </Paragraph>
+                        <Paragraph x:Name="Cust">Customer No. :-
+                            <Run Text="3223232"></Run>
+                        </Paragraph>
+                    </Section>
+                    <Section>
+                        <Table>
+                            <Table.Columns>
+                                <TableColumn></TableColumn>
+                                <TableColumn></TableColumn>
+                                <TableColumn></TableColumn>
+                                <TableColumn></TableColumn>
+                                <TableColumn></TableColumn>
+                            </Table.Columns>
+                            <TableRowGroup>
+                                <TableRow>
+                                    <TableCell>
+                                        <Paragraph>Sl.No</Paragraph>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Paragraph>items</Paragraph>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Paragraph>Qty</Paragraph>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Paragraph>Mrp</Paragraph>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Paragraph>Discount</Paragraph>
+                                    </TableCell>
+                                </TableRow>
+                            </TableRowGroup>
+                            <TableRowGroup >
+                                <TableRow>
+                                    <TableCell>
+                                        <Paragraph Foreground="Blue">Blue</Paragraph>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Paragraph>1</Paragraph>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Paragraph>2</Paragraph>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Paragraph>3</Paragraph>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Paragraph>3</Paragraph>
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell>
+                                        <Paragraph Foreground="Red">Red</Paragraph>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Paragraph>1</Paragraph>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Paragraph>2</Paragraph>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Paragraph>3</Paragraph>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Paragraph>3</Paragraph>
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell>
+                                        <Paragraph Foreground="Green">Green</Paragraph>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Paragraph>1</Paragraph>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Paragraph>2</Paragraph>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Paragraph>3</Paragraph>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Paragraph>3</Paragraph>
+                                    </TableCell>
+                                </TableRow>
+                            </TableRowGroup>
+                           
+                        </Table>
+                    </Section>
+                </FlowDocument>
+            </FlowDocumentPageViewer>
+        </StackPanel>
+        
+    </Grid>
+</Window>

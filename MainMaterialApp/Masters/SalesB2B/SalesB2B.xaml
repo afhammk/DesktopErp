@@ -1,0 +1,246 @@
+﻿<UserControl x:Class="MainMaterialApp.Masters.SalesB2B.SalesB2B"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+             xmlns:local="clr-namespace:MainMaterialApp.Masters.SalesB2B"
+             x:Name="screen"             
+             mc:Ignorable="d" 
+             Loaded="screen_Loaded"
+             
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        
+        <Style TargetType="TextBox" x:Key="editingElement">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip"
+              Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+                     Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="Cnt" >
+            <Setter Property="Margin" Value="0"></Setter>
+        </Style>
+
+        <Style TargetType="DataGridColumnHeader" x:Key="Hdr" >
+            <Setter Property="Padding" Value="15 0 "></Setter>
+            <Setter Property="Background" Value="LightGray"></Setter>
+        </Style>
+
+        <!--<Style TargetType="DataGridCell" x:Key="cellstyle" BasedOn="{StaticResource MaterialDesignDataGridCell}">
+            <Setter Property="Padding" Value="0"></Setter>
+        </Style>-->
+        
+    </UserControl.Resources>
+    <materialDesign:Card Background="#FFF7F7F7">
+        <Grid Margin="20" >
+            
+            <Grid.RowDefinitions>
+                <RowDefinition MaxHeight="120"></RowDefinition>
+                <RowDefinition ></RowDefinition>
+                <RowDefinition MaxHeight="80"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" >
+                <Grid.RowDefinitions>
+                    <RowDefinition ></RowDefinition>
+                    <RowDefinition ></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition ></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0" Grid.Column="0" Margin="0 2 5 0" VerticalAlignment="Top" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition  Width="0.8*"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Invoice No :-"  VerticalAlignment="Center" Grid.Column="0" >
+                    </TextBlock>
+                    <syncfusion:UpDown  
+                    x:Name="InvoiceNoNumericField"
+                    BorderBrush="Black"
+                    BorderThickness="1"
+                    FocusedBorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                    Grid.Column="1"
+                    Height="24"
+                    TextAlignment="Center"
+                    ValueChanged="InvoiceNoNumericField_ValueChanged"
+                    Value="{Binding Path=InvoiceNo , Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" >
+                        
+                    </syncfusion:UpDown>
+                </Grid>
+                <DatePicker x:Name="InvoiceDatePicker" SelectedDate="{Binding Path=InvoiceDate , Mode=TwoWay , UpdateSourceTrigger=PropertyChanged }"  Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" Margin="0 3 5 0"  Padding="3" Style="{StaticResource MaterialDesignOutlinedDatePicker}"></DatePicker>
+
+                <Button Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Right" Width="100"  materialDesign:ButtonAssist.CornerRadius="15"  Style="{StaticResource MaterialDesignOutlinedDarkButton}" Foreground="{DynamicResource PrimaryHueMidBrush}" >
+                    <Button.Content >
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <materialDesign:PackIcon Kind="Printer" Margin="0 3 5 0"/>
+                            <TextBlock Text=" PRINT" Margin="0 0 1 0"></TextBlock>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+
+
+
+                <ComboBox x:Name="PartySelectbox" SelectedItem="{Binding Path=PartySelected , Mode=TwoWay , UpdateSourceTrigger=PropertyChanged , ValidatesOnDataErrors=True}"  Padding="10 7" Margin="0 0 3 0" Height="35" Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="2" VerticalAlignment="Top"  Style="{StaticResource MaterialDesignOutlinedComboBox}" materialDesign:HintAssist.Hint="Party" >
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Name}"></TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+
+            </Grid>
+            <Grid Grid.Row="1"  >
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <DataGrid x:Name="B2BDatagrid" AutoGenerateColumns="False" Grid.Row="0" CanUserAddRows="False"  RowDetailsVisibilityMode="Visible"  CellEditEnding="B2BDatagrid_CellEditEnding" PreviewKeyDown="B2BDatagrid_PreviewKeyDown" HorizontalScrollBarVisibility="Auto"  SelectionMode="Single"  SelectionUnit="FullRow"  >
+                    <DataGrid.Resources>
+                        <Style TargetType="ScrollBar" >
+                            <EventSetter Event="Scroll" Handler="ScrollBar_Scroll"></EventSetter>
+                        </Style>
+                    </DataGrid.Resources>
+                    
+                    <DataGrid.CellStyle>
+                        <Style TargetType="DataGridCell" BasedOn="{StaticResource MaterialDesignDataGridCell}">
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="LightBlue"></Setter>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.CellStyle>
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow" BasedOn="{StaticResource MaterialDesignDataGridRow}">
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="LightBlue" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
+                    <DataGrid.Columns >
+
+                        <materialDesign:DataGridTextColumn MinWidth="100" x:Name="DgIdColumn" EditingElementStyle="{StaticResource editingElement}"  ElementStyle="{StaticResource Cnt}" HeaderStyle="{StaticResource Hdr}"  Header="Id" Width="50" Binding= "{Binding Path=No, Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" >
+                        </materialDesign:DataGridTextColumn>
+                        <materialDesign:DataGridTextColumn MinWidth="100" x:Name="DgBarcodeColumn" EditingElementStyle="{StaticResource editingElement}" ElementStyle="{StaticResource Cnt}" HeaderStyle="{StaticResource Hdr}"  Width="*" Header="Barcode" Binding= "{Binding Path=Barcode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged , ValidatesOnNotifyDataErrors=True}"   >
+                        </materialDesign:DataGridTextColumn>
+                        <materialDesign:DataGridTextColumn MinWidth="100" x:Name="DgItemColumn" EditingElementStyle="{StaticResource editingElement}" ElementStyle="{StaticResource Cnt}" HeaderStyle="{StaticResource Hdr}"  Width="2*" Header="Item" Binding= "{Binding Path=ItemName, Mode=TwoWay ,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                        <materialDesign:DataGridTextColumn MinWidth="100" x:Name="DgHsnColumn" EditingElementStyle="{StaticResource editingElement}" ElementStyle="{StaticResource Cnt}" HeaderStyle="{StaticResource Hdr}"  Width="*" Header="HSN" Binding= "{Binding Path=HSN, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                        <materialDesign:DataGridTextColumn MinWidth="100" x:Name="DgQtyColumn" EditingElementStyle="{StaticResource editingElement}" ElementStyle="{StaticResource Cnt}" HeaderStyle="{StaticResource Hdr}"  Width="*" Header="Qty" Binding= "{Binding Path=Qty, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" IsReadOnly="False"/>
+                        <materialDesign:DataGridTextColumn MinWidth="100" x:Name="DgMrpColumn" EditingElementStyle="{StaticResource editingElement}" ElementStyle="{StaticResource Cnt}" HeaderStyle="{StaticResource Hdr}"  Width="*" Header="Mrp" Binding= "{Binding Path=Mrp, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                        <materialDesign:DataGridTextColumn MinWidth="100" x:Name="DgPriceColumn" EditingElementStyle="{StaticResource editingElement}" ElementStyle="{StaticResource Cnt}" HeaderStyle="{StaticResource Hdr}"  Width="*" Header="Price" Binding= "{Binding Path=Price, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                        <materialDesign:DataGridTextColumn MinWidth="100" x:Name="DgCgstColumn" EditingElementStyle="{StaticResource editingElement}" ElementStyle="{StaticResource Cnt}" HeaderStyle="{StaticResource Hdr}"  Width="*" Header="Cgst" Binding= "{Binding Path=Cgst, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                        <materialDesign:DataGridTextColumn MinWidth="100" x:Name="DgSgstColumn" EditingElementStyle="{StaticResource editingElement}" ElementStyle="{StaticResource Cnt}" HeaderStyle="{StaticResource Hdr}"  Width="*" Header="Sgst" Binding= "{Binding Path=Sgst, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                        <materialDesign:DataGridTextColumn MinWidth="100" x:Name="DgAmountColumn" EditingElementStyle="{StaticResource editingElement}" ElementStyle="{StaticResource Cnt}" HeaderStyle="{StaticResource Hdr}"  Width="*" Header="Amount" Binding= "{Binding Path=Amount, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                        <!--<materialDesign:DataGridComboBoxColumn HeaderStyle="{StaticResource Hdr}" Width="*" DisplayMemberPath="Name" Header="Salesman" SelectedItemBinding="{Binding Salesman}">
+                            <materialDesign:DataGridComboBoxColumn.ElementStyle>
+                                <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignComboBox}">
+                                    <Setter Property="ItemsSource" Value="{Binding SalesmanOptions}" />
+                                </Style>
+                            </materialDesign:DataGridComboBoxColumn.ElementStyle>
+                            <materialDesign:DataGridComboBoxColumn.EditingElementStyle >
+                                <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignComboBox}">
+                                    <Setter Property="ItemsSource" Value="{Binding SalesmanOptions}" />
+                                </Style>
+                            </materialDesign:DataGridComboBoxColumn.EditingElementStyle>
+                        </materialDesign:DataGridComboBoxColumn>-->
+                    </DataGrid.Columns>
+                    <DataGrid.RowDetailsTemplate  >
+                        <DataTemplate>
+                            <Grid Background="BlanchedAlmond">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding Details}" Grid.Column="2" Margin="15 0"></TextBlock>
+                                <TextBlock Text="{Binding CgstDetails}" Grid.Column="7"  Margin="15 0"></TextBlock>
+                                <TextBlock Text="{Binding SgstDetails}" Grid.Column="8"  Margin="15 0"></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGrid.RowDetailsTemplate>
+                </DataGrid>
+                <ScrollViewer x:Name="TotalScroll" Grid.Row="2" HorizontalScrollBarVisibility="Hidden"   VerticalScrollBarVisibility="Disabled" VerticalAlignment="Top"  >
+                    <Grid Grid.Row="2" Height="25"  Background="LightGray" x:Name="TotalsGrid"  >
+                    <Grid.RowDefinitions>
+                        <RowDefinition  ></RowDefinition>
+
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                            <ColumnDefinition  MinWidth="{Binding ElementName=DgIdColumn , Path=ActualWidth}"></ColumnDefinition>
+                            <ColumnDefinition  MinWidth="{Binding ElementName=DgBarcodeColumn , Path=ActualWidth}"></ColumnDefinition>
+                            <ColumnDefinition  MinWidth="{Binding ElementName=DgItemColumn , Path=ActualWidth}"></ColumnDefinition>
+                            <ColumnDefinition  MinWidth="{Binding ElementName=DgHsnColumn , Path=ActualWidth}"></ColumnDefinition>
+                            <ColumnDefinition  MinWidth="{Binding ElementName=DgQtyColumn , Path=ActualWidth}"></ColumnDefinition>
+                            <ColumnDefinition  MinWidth="{Binding ElementName=DgMrpColumn , Path=ActualWidth}"></ColumnDefinition>
+                            <ColumnDefinition  MinWidth="{Binding ElementName=DgPriceColumn , Path=ActualWidth}"></ColumnDefinition>
+                            <ColumnDefinition  MinWidth="{Binding ElementName=DgCgstColumn , Path=ActualWidth}"></ColumnDefinition>
+                            <ColumnDefinition  MinWidth="{Binding ElementName=DgSgstColumn , Path=ActualWidth}"></ColumnDefinition>
+                            <ColumnDefinition  MinWidth="{Binding ElementName=DgAmountColumn , Path=ActualWidth}"></ColumnDefinition>
+
+                    </Grid.ColumnDefinitions>
+ 
+
+                    <TextBlock Margin="15 0" FontWeight="Bold" x:Name="TotalLabel" Text="Total" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="lightgray" />
+
+                    <TextBlock Margin="15 0"  FontWeight="Bold" Grid.Row="0" Grid.Column="1"  HorizontalAlignment="Stretch"   TextWrapping="Wrap" VerticalAlignment="Center" Background="lightgray"/>
+                    <TextBlock Margin="15 0"  FontWeight="Bold" Grid.Row="0" Grid.Column="0"  HorizontalAlignment="Stretch"   TextWrapping="Wrap" VerticalAlignment="Center" Background="lightgray"/>
+
+                    <TextBlock Margin="15 0"  FontWeight="Bold" x:Name="TotalHsn" Grid.Row="0" Grid.Column="3" Text="{Binding Path=TotalHsn}"  HorizontalAlignment="Stretch"   TextWrapping="Wrap" VerticalAlignment="Center" Background="lightgray"/>
+                    <TextBlock Margin="15 0"  FontWeight="Bold" x:Name="TotalQty" Grid.Row="0" Grid.Column="4" Text="{Binding Path=TotalQuantity}"  HorizontalAlignment="Stretch"   TextWrapping="Wrap" VerticalAlignment="Center"  Background="lightgray"/>
+                    <TextBlock Margin="15 0"  FontWeight="Bold" x:Name="TotalMrp" Grid.Row="0" Grid.Column="5" Text="{Binding Path=TotalMrp}"  HorizontalAlignment="Stretch"  TextWrapping="Wrap" VerticalAlignment="Center"  Background="lightgray"/>
+                    <TextBlock Margin="15 0"  FontWeight="Bold" x:Name="TotalPrice" Grid.Row="0" Grid.Column="6" Text="{Binding Path=TotalPrice}"  HorizontalAlignment="Stretch"   TextWrapping="Wrap" VerticalAlignment="Center"  Background="lightgray"/>
+                    <TextBlock Margin="15 0"  FontWeight="Bold" x:Name="TotalCgst" Grid.Row="0" Grid.Column="7" Text="{Binding Path=TotalCgst}"  HorizontalAlignment="Stretch"   TextWrapping="Wrap" VerticalAlignment="Center"  Background="lightgray"/>
+                    <TextBlock Margin="15 0"  FontWeight="Bold" x:Name="TotalSgst" Grid.Row="0" Grid.Column="8" Text="{Binding Path=TotalSgst}" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Center"  Background="lightgray"/>
+                    <TextBlock Margin="15 0"   FontWeight="Bold"  Grid.Row="0" Grid.Column="9" Text="43"  HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Center"  Background="lightgray"/>
+                    <TextBlock  Margin="15 0"  FontWeight="Bold" x:Name="TotalAmount" Grid.Row="0" Grid.Column="10"  Text="{Binding Path=TotalAmount}"  HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Center"  Background="lightgray"/>
+
+
+                </Grid>
+                </ScrollViewer>
+            </Grid>
+            <Grid Grid.Row="2"  >
+                <Grid.RowDefinitions>
+                    <RowDefinition ></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+
+                </Grid.ColumnDefinitions>
+
+
+                <Button x:Name="Save" Content="SAVE" Click="Save_Click"  VerticalAlignment="Bottom" Margin="0 0 5 3"  Height="60"   Grid.Column="0" Grid.Row="1" Grid.RowSpan="2"  materialDesign:ShadowAssist.ShadowDepth="Depth3"  materialDesign:ButtonAssist.CornerRadius="5"  >
+                </Button>
+               
+                <!--<ContentControl Grid.Row="1" Grid.Column="3" x:Name="LoadingGrid" Content="{Binding}" />-->
+
+            </Grid>
+        </Grid>
+
+    </materialDesign:Card>
+</UserControl>

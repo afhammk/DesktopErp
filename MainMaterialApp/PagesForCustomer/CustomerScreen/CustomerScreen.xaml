@@ -1,0 +1,174 @@
+﻿<UserControl x:Class="MainMaterialApp.PagesForCustomer.CustomerScreen.CustomerScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             
+             xmlns:local="clr-namespace:MainMaterialApp.PagesForCustomer.CustomerScreen"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="Hdr" TargetType="GridViewColumnHeader">
+            <Setter Property="Background" Value="LightGray"></Setter>
+            
+        </Style>
+    </UserControl.Resources>
+    <materialDesign:Card>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1"  >
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="200"></RowDefinition>
+                </Grid.RowDefinitions>
+                
+                
+                <ContentControl Grid.Row="0" HorizontalAlignment="Stretch" x:Name="ContentArea" Content="{Binding}"></ContentControl>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" Margin="20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="SALES RETURN "></TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="OFFER DISCOUNT "></TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="COUPON VOUCHER "></TextBlock>
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="CREDIT "></TextBlock>
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="POINTS REDEEMED "></TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Text="0.00"></TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right"  Text="0.00"></TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right"  Text="0.00"></TextBlock>
+                        <TextBlock Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right"  Text="0.00"></TextBlock>
+                        <TextBlock Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right"  Text="0.00"></TextBlock>
+                        <TextBlock Grid.Row="5" Grid.RowSpan="2" Grid.Column="0" VerticalAlignment="Center" FontWeight="Bold"  Text="NET AMOUNT"></TextBlock>
+                        <TextBlock Grid.Row="5" Grid.RowSpan="2" Grid.Column="1" VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Right"  Text="8999.00"></TextBlock>
+                    </Grid>
+                    <Image Grid.Column="1" Source="C:\Users\Hp\source\repos\MainMaterialApp\MainMaterialApp\PagesForCustomer\CustomerScreen\Images\qrcode.jpg"></Image>
+
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.25*"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Margin="20 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left">
+                        <TextBlock Text="Name :- " FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="Afham m.k" FontWeight="Bold"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1"  VerticalAlignment="Center" HorizontalAlignment="Left">
+                        <TextBlock Text="Phone :- " FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="91929292929" FontWeight="Bold"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="2"  VerticalAlignment="Center" HorizontalAlignment="Left">
+                        <TextBlock Text="Card No :- " FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="231134324" FontWeight="Bold"></TextBlock>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="1" >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <ListView IsHitTestVisible="False"  Grid.Row="0" x:Name="ListTable" Width="700"  HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" >
+
+                            <ListView.View >
+                                <GridView  >
+                                    <GridViewColumn   >
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Item" ></TextBlock>
+                                        </GridViewColumn.Header>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Item}" Padding="20 0" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="Details">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Details}"  Padding="20 0" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="Qty">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Qty}" Padding="20 0" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn  Header="Mrp"   >
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Mrp}" Padding="20 0" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="Discount"   >
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Discount}" Padding="20 0" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="Amount"   >
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Amount}" Padding="20 0" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+
+                        <Grid Grid.Row="1" Height="25" Background="LightGray"   >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock  Grid.Column="0"  ></TextBlock>
+
+                            <TextBlock  Grid.Column="1"   ></TextBlock>
+                            <TextBlock Text="2334" Grid.Column="2"  ></TextBlock>
+
+                            <TextBlock Text="2334" Grid.Column="3"></TextBlock>
+                            <TextBlock Text="23034" Grid.Column="4"></TextBlock>
+                            <TextBlock Text="23434" Grid.Column="5"></TextBlock>
+                        </Grid>
+                    </Grid>
+                 
+                </Grid>
+            </Grid>
+        </Grid>
+    </materialDesign:Card>
+</UserControl>
